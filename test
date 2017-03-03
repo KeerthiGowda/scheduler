@@ -1,0 +1,15 @@
+ if(prev->policy==SCHED_CASIO || next->policy==SCHED_CASIO){
+                if(prev->policy==SCHED_CASIO && next->policy==SCHED_CASIO){
+                        snprintf(msg,CASIO_MSG_SIZE,"prev->(%d:%d),next->(%d:%d)",prev->casio_id,prev->pid,next->casio_id,next->pid);
+                }
+                else{
+                        if(prev->policy==SCHED_CASIO){
+                                snprintf(msg,CASIO_MSG_SIZE,"prev->(%d:%d),next->(-1:%d)",prev->casio_id,prev->pid,next->pid);
+                        }else{
+                                snprintf(msg,CASIO_MSG_SIZE,"prev->(-1:%d),next->(%d:%d)",prev->pid,next->casio_id,next->pid);
+                        }
+                }
+                register_casio_event(sched_clock(), msg, CASIO_CONTEXT_SWITCH);
+
+
+        }
